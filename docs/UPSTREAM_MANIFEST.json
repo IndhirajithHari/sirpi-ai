@@ -1,0 +1,414 @@
+{
+  ".gitignore": {
+    "upstream_git_blob": "fdad00a062b43b2b3cc756f29d18ac8731190140",
+    "modified_for_sirpi": true
+  },
+  "LICENSE": {
+    "upstream_git_blob": "7dccc4f317ec678f4578e06baedd5ca8cd75e3f3",
+    "modified_for_sirpi": false
+  },
+  "README.md": {
+    "upstream_git_blob": "dfb478533b92c1ff6f6e5079cb3a2c77f7fa4aa1",
+    "modified_for_sirpi": true
+  },
+  "docs/executor.md": {
+    "upstream_git_blob": "0a8e6eca79af92decaeecd261bbb151924295260",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/__init__.py": {
+    "upstream_git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/actions.py": {
+    "upstream_git_blob": "64c9da76841753bdb65d84752bd17cbc32903bd7",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/data.py": {
+    "upstream_git_blob": "cc83da344879df4e639e50626718b85dfe6274f9",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/datagen.py": {
+    "upstream_git_blob": "1e5bde1d7e5b402add61369d38e64ec19bf1a7c0",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/evaluate.py": {
+    "upstream_git_blob": "7a32a635a53368455958d1f4f310bc0f45c8a33b",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/expert.py": {
+    "upstream_git_blob": "5fc4569c2ef12d8c2e8b4060191b54e17f5f5f51",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/goals.py": {
+    "upstream_git_blob": "2e7372eb7fc3288bf209ef2293e1a9a8a4aafd4b",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/model/__init__.py": {
+    "upstream_git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/model/featurize.py": {
+    "upstream_git_blob": "d04256fa25ad1f35fc730e0e95de6af627203b0c",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/model/net.py": {
+    "upstream_git_blob": "3be1171c7898eaf1ba6bb006c166cc79602bcb50",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/rl_ppo.py": {
+    "upstream_git_blob": "701594401fed9b48a5f08e2dc3593928c8663c9a",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/rollout.py": {
+    "upstream_git_blob": "6cb60de061366467b873cb9fac593b98ffab32da",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/runtime/__init__.py": {
+    "upstream_git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/runtime/client.py": {
+    "upstream_git_blob": "73a5263ed9f691c43f9823ddbab2b5fe59d86763",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/runtime/episode.py": {
+    "upstream_git_blob": "ecc04c57fc9dcfec8fe8fd53388d3b771b86009d",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/runtime/fcenv.py": {
+    "upstream_git_blob": "ec5237cee435a7b51bc8af372d8fa133919611f0",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/runtime/gui_server.py": {
+    "upstream_git_blob": "883f6bd0a67fca79c4be7d3f84c3a5f04146c371",
+    "modified_for_sirpi": true
+  },
+  "freecad_s1/runtime/gui_session.py": {
+    "upstream_git_blob": "2e21436d235726ff37deed3d1e8a72aa17378683",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/runtime/params.py": {
+    "upstream_git_blob": "6d0eb36fb1ac7bbd8d22f9b1dbcb3cc9e1b471c5",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/runtime/session.py": {
+    "upstream_git_blob": "27d9c7646d77a514dc4df893a1e0c0a5d74f5bdf",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/runtime/worker.py": {
+    "upstream_git_blob": "c5d21a77fc3f563a8c14797b27a88fb1faee926e",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/schema.py": {
+    "upstream_git_blob": "cae8d6d2e28ac9e90234b8f9bef2d68ec2e4c0eb",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/screen_state.py": {
+    "upstream_git_blob": "19d8d28c8fe1ba990950ac7c896e07fde71c57e9",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/train_sft.py": {
+    "upstream_git_blob": "0ee47e367968b3abf3297612f793951cfa3e4614",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/ui/__init__.py": {
+    "upstream_git_blob": "439de5de26cc7969b88e734344e4347c3bc3d0db",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/ui/ax.py": {
+    "upstream_git_blob": "35df06a304c63db5d5496a6ccdeb1a06945dff6f",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/ui/datagen.py": {
+    "upstream_git_blob": "ee11d7c84ce9ff1981c8a92536ea3da75b5884f3",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/ui/demo.py": {
+    "upstream_git_blob": "3cc72797b75bfaa0afc401b9a262aec1820b9f79",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/ui/env.py": {
+    "upstream_git_blob": "a8327bbfb6c15f6fc0152dd018319fc3d5840b81",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/ui/hands.py": {
+    "upstream_git_blob": "08913914a456a4bce85efc71860f0b221ced4003",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/ui/launch.py": {
+    "upstream_git_blob": "fb8a3e853c88306d349b97297de142f307b22193",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/ui/perceive.py": {
+    "upstream_git_blob": "fa7c7819252c5900728426d8f35e4e7868248c86",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/ui/screen.py": {
+    "upstream_git_blob": "dde5755e8d60f3f7abb91da2b9fc639caec96226",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/ui/session.py": {
+    "upstream_git_blob": "4dcc3453f7eccaef8b50a01c4f7908f12e2a3bc8",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/ui/spec.py": {
+    "upstream_git_blob": "945af3e24504739b33a70ec6db0266f5f0fe3b80",
+    "modified_for_sirpi": false
+  },
+  "freecad_s1/ui/teacher.py": {
+    "upstream_git_blob": "054a487aa150fab0d1cda76d0bf83b218b1c2152",
+    "modified_for_sirpi": false
+  },
+  "pyproject.toml": {
+    "upstream_git_blob": "734e8a211c7f1f5ed0c50cbb2936eec2a9637c49",
+    "modified_for_sirpi": true
+  },
+  "release/hf/LICENSE": {
+    "upstream_git_blob": "7dccc4f317ec678f4578e06baedd5ca8cd75e3f3",
+    "modified_for_sirpi": false
+  },
+  "release/hf/README.md": {
+    "upstream_git_blob": "06d3bbec4ebdccebfaa5794818339f7936cd2ccd",
+    "modified_for_sirpi": false
+  },
+  "release/hf/config.json": {
+    "upstream_git_blob": "48698d2ffda7a3454fc0b3a064be3147dc97070f",
+    "modified_for_sirpi": false
+  },
+  "release/hf/eval_results.json": {
+    "upstream_git_blob": "d82733aa071c4b8a81032ef6f40906e7c75642d3",
+    "modified_for_sirpi": false
+  },
+  "release/hf/eval_results_perturbed.json": {
+    "upstream_git_blob": "78df04847183b443f09e6377a991a20c966ae792",
+    "modified_for_sirpi": false
+  },
+  "release/hf/model.safetensors": {
+    "upstream_git_blob": "ec8bbfa4b857a2f619d55c5e59adba8e50fe4d45",
+    "modified_for_sirpi": false
+  },
+  "results/charts/abl_A_abs_s0.json": {
+    "upstream_git_blob": "4de40ab5ed76a5c1db63673aadeab5659bc42cd4",
+    "modified_for_sirpi": false
+  },
+  "results/charts/abl_A_abs_s1.json": {
+    "upstream_git_blob": "b120a009fdb3d92f1121b1b5c7dbfbb2b9c175ee",
+    "modified_for_sirpi": false
+  },
+  "results/charts/abl_B_rand_s0.json": {
+    "upstream_git_blob": "bb1c1c67a126862454a5e866979f0d9c5e3b6c0e",
+    "modified_for_sirpi": false
+  },
+  "results/charts/abl_B_rand_s1.json": {
+    "upstream_git_blob": "59965d900a62ea56adbaf5f2a4a3cd01398c5bab",
+    "modified_for_sirpi": false
+  },
+  "results/charts/abl_C_rand_ord_s0.json": {
+    "upstream_git_blob": "a8bf2eed0aa525c78f37e5f73ced9a3bd5356fb2",
+    "modified_for_sirpi": false
+  },
+  "results/charts/abl_C_rand_ord_s1.json": {
+    "upstream_git_blob": "197fea780e0159ee420ac39792ce7bc095ad80bc",
+    "modified_for_sirpi": false
+  },
+  "results/charts/abl_C_rand_ord_s2.json": {
+    "upstream_git_blob": "1f22022f06dc84f7eb52f2d09a892a2834e5cafd",
+    "modified_for_sirpi": false
+  },
+  "results/charts/abl_L_done_s0.json": {
+    "upstream_git_blob": "fc34a0e4e653165b5379633bcfd162e07ae83971",
+    "modified_for_sirpi": false
+  },
+  "results/charts/abl_L_done_s1.json": {
+    "upstream_git_blob": "fc34a0e4e653165b5379633bcfd162e07ae83971",
+    "modified_for_sirpi": false
+  },
+  "results/charts/abl_L_done_s2.json": {
+    "upstream_git_blob": "fc34a0e4e653165b5379633bcfd162e07ae83971",
+    "modified_for_sirpi": false
+  },
+  "results/charts/taiga_stress.json": {
+    "upstream_git_blob": "264ba1aa508903bfb7672cd4b67017392904b39b",
+    "modified_for_sirpi": false
+  },
+  "results/charts/v2_len2_len4.json": {
+    "upstream_git_blob": "e824381ba98de2276bb1c8530a82bfe5bcfb6cdb",
+    "modified_for_sirpi": false
+  },
+  "results/eval.json": {
+    "upstream_git_blob": "d82733aa071c4b8a81032ef6f40906e7c75642d3",
+    "modified_for_sirpi": false
+  },
+  "results/eval_perturb.json": {
+    "upstream_git_blob": "78df04847183b443f09e6377a991a20c966ae792",
+    "modified_for_sirpi": false
+  },
+  "results/eval_v2_baseline.json": {
+    "upstream_git_blob": "06e10dc1552289fcfecaba29bce96dbf726370b7",
+    "modified_for_sirpi": false
+  },
+  "results/mesa-s1/eval.json": {
+    "upstream_git_blob": "903327e0c9d63ccfb4e905f9ce598f0105b8f6b1",
+    "modified_for_sirpi": false
+  },
+  "results/mesa-s1/eval_perturb.json": {
+    "upstream_git_blob": "00ffa464669e9141e25b54d03426b74bc01bcafe",
+    "modified_for_sirpi": false
+  },
+  "results/mesa-s1/train_history.json": {
+    "upstream_git_blob": "e01c0f79c49fc93a0a948c6b607f585a386274da",
+    "modified_for_sirpi": false
+  },
+  "scripts/ablate.sh": {
+    "upstream_git_blob": "3ec7148d7e9fc62e5386abe62aea8a461a55c4b9",
+    "modified_for_sirpi": false
+  },
+  "scripts/ablate_screen.py": {
+    "upstream_git_blob": "0a02069c4efff4d8d2634bf3a971256cf4f4e833",
+    "modified_for_sirpi": false
+  },
+  "scripts/calibrate.py": {
+    "upstream_git_blob": "627bde8fabd6674298a17b619e9743ad95c92b07",
+    "modified_for_sirpi": false
+  },
+  "scripts/chart_evals.sh": {
+    "upstream_git_blob": "4b0d27d677ef6e0cf7ad2ac3e1391bf34e6cddc2",
+    "modified_for_sirpi": false
+  },
+  "scripts/diagnose.py": {
+    "upstream_git_blob": "2de60e91552a63193bb37f8b29b46ccea4b84b2f",
+    "modified_for_sirpi": false
+  },
+  "scripts/eval_mappings.sh": {
+    "upstream_git_blob": "35969b166a5f22acd88dffab64f1830a0bc39be0",
+    "modified_for_sirpi": false
+  },
+  "scripts/export_chart_data.py": {
+    "upstream_git_blob": "c7bd0d03cee424db04c6064c858830d082916d3f",
+    "modified_for_sirpi": false
+  },
+  "scripts/final_eval.sh": {
+    "upstream_git_blob": "581400d16f9c386f8ac7c2eea8c8cdd766c8d655",
+    "modified_for_sirpi": false
+  },
+  "scripts/followup.sh": {
+    "upstream_git_blob": "ea057435fc51f893d6adf4ec946f1d9e287de3b8",
+    "modified_for_sirpi": false
+  },
+  "scripts/freecad_gui_server.FCMacro": {
+    "upstream_git_blob": "7a7effb26618108d4512ad9220bd0bc749f3de7b",
+    "modified_for_sirpi": false
+  },
+  "scripts/gui_demo.py": {
+    "upstream_git_blob": "a7d11826ae2b4cce7f7483f85f85cbea650fe99d",
+    "modified_for_sirpi": false
+  },
+  "scripts/mesa_ax.py": {
+    "upstream_git_blob": "d4bf8411d55662b0012999b38474f2da0d6fd199",
+    "modified_for_sirpi": false
+  },
+  "scripts/mesa_demo.py": {
+    "upstream_git_blob": "cd4e0535f22cda3c008d1c397bba6035c2e696ff",
+    "modified_for_sirpi": false
+  },
+  "scripts/mesa_teaser_frames.py": {
+    "upstream_git_blob": "efef163e04d58b3262f99c1da06437ca2192a0f4",
+    "modified_for_sirpi": false
+  },
+  "scripts/probe_pointer.py": {
+    "upstream_git_blob": "bd74528620dc4e0dbc74c323f5ff3fc8a0c67b17",
+    "modified_for_sirpi": false
+  },
+  "scripts/probe_ui_dialogs.FCMacro": {
+    "upstream_git_blob": "450663865a8de5d8a869a4ba8fa506d53431040c",
+    "modified_for_sirpi": false
+  },
+  "scripts/probe_ui_dialogs.py": {
+    "upstream_git_blob": "2b1a9b6d7ecd05230d2c32085c5e958b91d34bea",
+    "modified_for_sirpi": false
+  },
+  "scripts/publish_hf.sh": {
+    "upstream_git_blob": "7b87ca028e91146fd2bf7eaa95ade2eeee9a36a3",
+    "modified_for_sirpi": false
+  },
+  "scripts/round2.sh": {
+    "upstream_git_blob": "29b690b7ef24877b38d3685381371345e638124e",
+    "modified_for_sirpi": false
+  },
+  "scripts/round3.sh": {
+    "upstream_git_blob": "e089809db0efac09b9cb15d21937f452c5340c6b",
+    "modified_for_sirpi": false
+  },
+  "scripts/round4.sh": {
+    "upstream_git_blob": "7f3d8316a250dd55dab3634de73cf4368e88d238",
+    "modified_for_sirpi": false
+  },
+  "scripts/run_all.sh": {
+    "upstream_git_blob": "0a7a3418270623e5cd556106391b7a97f529ba5e",
+    "modified_for_sirpi": false
+  },
+  "scripts/showcase_goals.json": {
+    "upstream_git_blob": "39e1de650bde137e060d29e588dc464bddf4ab29",
+    "modified_for_sirpi": false
+  },
+  "scripts/smoke_expert.py": {
+    "upstream_git_blob": "e75d6e51e0309fa5686b89b1f3bd6bc04129a829",
+    "modified_for_sirpi": false
+  },
+  "scripts/smoke_ui.FCMacro": {
+    "upstream_git_blob": "8fb159d0a03cda39bda647af852977d68b585b23",
+    "modified_for_sirpi": false
+  },
+  "scripts/smoke_ui.py": {
+    "upstream_git_blob": "015e2c00e926920c3b8754aca8cd366e27fd63c0",
+    "modified_for_sirpi": false
+  },
+  "scripts/summarize.py": {
+    "upstream_git_blob": "11ea8985e7e87abb176a830cb5213580dc22aab8",
+    "modified_for_sirpi": false
+  },
+  "scripts/train_final.sh": {
+    "upstream_git_blob": "6b703d196a8f6ed6edbe986938bca58d3867b33c",
+    "modified_for_sirpi": false
+  },
+  "scripts/train_mesa.sh": {
+    "upstream_git_blob": "19248dd680f8160a052f0a07ad8e2cc81b98b599",
+    "modified_for_sirpi": false
+  },
+  "scripts/ui_pipeline.sh": {
+    "upstream_git_blob": "69e493a4c03d166867a2cefec9358e67851677c0",
+    "modified_for_sirpi": false
+  },
+  "scripts/ui_server.FCMacro": {
+    "upstream_git_blob": "8e8e8a4dd772c80e12a03a938a03c6eb6ff41ccf",
+    "modified_for_sirpi": false
+  },
+  "scripts/ui_shard.FCMacro": {
+    "upstream_git_blob": "f36e90d36b5d7d8e9ef1c78c6778e31a8da62614",
+    "modified_for_sirpi": false
+  },
+  "showcase/goals.json": {
+    "upstream_git_blob": "39e1de650bde137e060d29e588dc464bddf4ab29",
+    "modified_for_sirpi": false
+  },
+  "tests/test_expert.py": {
+    "upstream_git_blob": "75f58e5904a56acc2924f02c3835f5e9868193d0",
+    "modified_for_sirpi": false
+  },
+  "tests/test_hands.py": {
+    "upstream_git_blob": "627e47d8b7f9ca5d5970a110e45bdaeab790f653",
+    "modified_for_sirpi": false
+  },
+  "tests/test_model.py": {
+    "upstream_git_blob": "877414f06e33fe4e3c3e48916147b4cc7fd1fa54",
+    "modified_for_sirpi": false
+  },
+  "tests/test_runtime.py": {
+    "upstream_git_blob": "d990919f451984c5a5917c9e5b404d5669859c65",
+    "modified_for_sirpi": false
+  },
+  "tests/test_ui.py": {
+    "upstream_git_blob": "7b20d6aa0ab034b53cf8b2c92ee636aa351ca98e",
+    "modified_for_sirpi": true
+  }
+}

@@ -1,0 +1,69 @@
+[
+  {
+    "id": "intro", "label": "SIRPI / GETTING STARTED", "title": "From setup to your first CAD part",
+    "lines": ["A step-by-step Windows walkthrough", "Local CPU inference • FreeCAD • No API key", "Setup instructions, followed by a real FreeCAD screen recording"],
+    "code": [], "note": "Example paths are generic. Replace them with your own project folder.",
+    "narration": "Welcome to Sirpi. This walkthrough covers installation, connecting Sirpi to FreeCAD, and building your first part. The setup steps are instruction screens. The demonstration section is a real FreeCAD screen recording. All paths are examples for any user."
+  },
+  {
+    "id": "install", "label": "STEP 1 / PREREQUISITES", "title": "Install FreeCAD and Python",
+    "lines": ["Download the stable Windows x86_64 installer from freecad.org.", "Install 64-bit Python. Python 3.12 was used for validation.", "Extract the complete Sirpi project, including release\\hf."],
+    "code": ["FreeCAD:  https://www.freecad.org/downloads.php", "Python:   https://www.python.org/downloads/", "Example project folder:  C:\\Projects\\Sirpi"],
+    "note": "Sirpi runs beside FreeCAD through a macro; it is not an Addon Manager workbench.",
+    "narration": "First, install the stable Windows version of FreeCAD and a 64 bit Python installation. Python 3 point 12 and FreeCAD 1 point 1 point 4 were used for validation. Extract the complete Sirpi project, including its model files. Sirpi connects through a macro, rather than an Addon Manager workbench."
+  },
+  {
+    "id": "dependencies", "label": "STEP 2 / PYTHON ENVIRONMENT", "title": "Install the CPU dependencies",
+    "lines": ["Open PowerShell in your Sirpi folder. Run each command in order.", "Wait for each installation to finish. You do not need to activate .venv."],
+    "code": ["cd \"C:\\Projects\\Sirpi\"", "python -m venv .venv", ".\\.venv\\Scripts\\python.exe -m pip install --timeout 120 torch `", "  --index-url https://download.pytorch.org/whl/cpu", ".\\.venv\\Scripts\\python.exe -m pip install --timeout 120 -e \".[dev]\""],
+    "note": "The backtick continues the PyTorch command onto the next line. Pause to copy.",
+    "narration": "Open PowerShell in the Sirpi project folder. Create the virtual environment, install CPU only PyTorch, then install Sirpi and its dependencies. Run each command in order and wait for completion. The backtick continues the PyTorch command on the following line. Pause the video to copy the commands, or use the written setup guide."
+  },
+  {
+    "id": "check", "label": "STEP 3 / CHECK THE INSTALLATION", "title": "Verify the model before opening CAD",
+    "lines": ["doctor checks the Python dependencies and FreeCAD location.", "smoke loads the released weights and scores commands on CPU."],
+    "code": [".\\.venv\\Scripts\\python.exe -m sirpi doctor", ".\\.venv\\Scripts\\python.exe -m sirpi smoke", "", "Expected: dependencies = true; local_weights = true", "Smoke result: device = cpu; parameters = 1228163"],
+    "note": "A successful smoke check verifies inference; it does not build CAD geometry.",
+    "narration": "Run doctor to check the dependencies, model files, and FreeCAD location. Then run smoke to test real CPU inference. All dependencies should be true, and the model should report one million, two hundred twenty eight thousand, one hundred sixty three parameters. This check does not yet build geometry."
+  },
+  {
+    "id": "connect", "label": "STEP 4 / CONNECT FREECAD", "title": "Launch the Sirpi macro",
+    "lines": ["Save any open work. Start a dedicated FreeCAD session for Sirpi.", "Wait for FreeCAD to finish opening. Keep its window open."],
+    "code": [".\\scripts\\start-sirpi.ps1", "", "If automatic discovery fails:", ".\\scripts\\start-sirpi.ps1 -FreeCAD `", "  \"C:\\Program Files\\FreeCAD 1.1\\bin\\freecad.exe\""],
+    "note": "The launcher supplies SIRPI_REPO and starts a local server on port 8765.",
+    "narration": "Save any existing work and run the Sirpi launcher. It opens FreeCAD and starts the local connection macro. If discovery fails, supply your actual FreeCAD executable path. Wait for startup to finish and keep this window open. Reuse an existing Sirpi session instead of launching a second server on the same port."
+  },
+  {
+    "id": "macro", "label": "STEP 5 / IF THE MACRO DOES NOT START", "title": "Start the connection manually",
+    "lines": ["In the FreeCAD window opened by the launcher:", "1. Open Macro → Macros…", "2. Choose your Sirpi project's scripts folder.", "3. Select Sirpi.FCMacro and click Execute."],
+    "code": ["Expected startup message in FreeCAD's Report view:", "Sirpi GUI server listening on 127.0.0.1:8765"],
+    "note": "If SIRPI_REPO is missing, save and close that session, then relaunch with Step 4.",
+    "narration": "If the connection does not start automatically, use the FreeCAD window opened by the launcher. Open Macro, then Macros. Choose the scripts folder inside your Sirpi project, select Sirpi dot F C Macro, and execute it. If the project environment is missing, save and close that session, then restart using the launcher."
+  },
+  {
+    "id": "run", "label": "STEP 6 / BUILD A PART", "title": "Run the first modeling goal",
+    "lines": ["Run this command from the project folder in PowerShell.", "Watch FreeCAD. Avoid manual editing while the model is working."],
+    "code": [".\\.venv\\Scripts\\python.exe -m sirpi demo `", "  --level 3 --seed 7 --out runs\\first-part"],
+    "note": "Next: a real screen recording of the CPU model building this goal in FreeCAD.",
+    "narration": "Now run the demo command. This structured goal creates a cylinder, a hole pattern, a cylindrical boss, and a fillet. Avoid editing the document while Sirpi works. The next section shows the actual FreeCAD application building this goal with the CPU model."
+  },
+  {
+    "id": "live", "label": "LIVE RECORDING / FREECAD", "title": "Sirpi builds the part on CPU",
+    "lines": [], "code": [], "note": "Real FreeCAD screen recording • No generated CAD footage",
+    "narration": "This is the real FreeCAD recording. Sirpi reads the document state and selects each next command. Watch sketches become solid features in the model tree. Dimensions come from the structured goal. The workflow adds a hole, repeats it around the cylinder, adds a boss, and rounds the top edges. The final result is checked against the target geometry."
+  },
+  {
+    "id": "results", "label": "STEP 7 / CHECK AND SAVE", "title": "Open your result",
+    "lines": ["Find these files inside your project's runs\\first-part folder:", "Sirpi.FCStd — editable FreeCAD model", "Sirpi.png — rendered preview", "result.json — success, command count and geometry match"],
+    "code": ["Successful validation example:", "success: true    done: true    steps: 26    iou: 1.0"],
+    "note": "Use File → Open in FreeCAD for the FCStd file. Choose a new output folder per run.",
+    "narration": "Open the output folder to find the editable FreeCAD document, a preview image, and the result report. The recorded validation completed in twenty six commands with an exact target match. Use File, Open in FreeCAD to reopen the document. Choose a separate output folder for every result you want to keep."
+  },
+  {
+    "id": "next", "label": "STEP 8 / REUSE AND TROUBLESHOOT", "title": "Keep building with Sirpi",
+    "lines": ["Cannot connect? Keep FreeCAD open and check the macro and port.", "FreeCAD not found? Supply its actual executable path.", "To restart later: launch the macro, then run another demo."],
+    "code": ["Build a supplied named goal:", ".\\.venv\\Scripts\\python.exe -m sirpi demo `", "  --goals showcase\\goals.json --name flange --out runs\\flange"],
+    "note": "Full instructions: docs/SETUP.md • Sirpi uses structured goals, not arbitrary text prompts.",
+    "narration": "If the connection fails, keep FreeCAD open and check the macro and matching port. For another part, use a supplied named goal. Sirpi accepts structured modeling instructions rather than arbitrary text prompts. The complete setup guide is in the docs folder. Sirpi is derived from Taiga S one by Shiv Shanmugam, under the M I T license."
+  }
+]

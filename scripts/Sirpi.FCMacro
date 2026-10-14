@@ -1,0 +1,12 @@
+# Run inside FreeCAD using Macro > Macros > Execute.
+import os
+import sys
+
+repo = os.environ.get("SIRPI_REPO") or os.environ.get("FREECAD_S1_REPO")
+if not repo:
+    raise RuntimeError("Set SIRPI_REPO to the Sirpi project folder before starting FreeCAD.")
+if repo not in sys.path:
+    sys.path.insert(0, repo)
+
+from freecad_s1.runtime.gui_server import start
+start(port=int(os.environ.get("SIRPI_PORT", "8765")))

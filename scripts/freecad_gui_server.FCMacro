@@ -1,0 +1,11 @@
+# Run inside the FreeCAD GUI: starts the Taiga-S1 / Mesa-S1 socket server.
+# Set FREECAD_S1_REPO to the repository root before launching FreeCAD, and
+# FREECAD_S1_UI=1 to serve the UI-level session that Mesa-S1 drives.
+import os, sys
+repo = os.environ["FREECAD_S1_REPO"]
+if repo not in sys.path:
+    sys.path.insert(0, repo)
+from freecad_s1.ui.launch import self_guard
+self_guard(mem_limit_gb=4, timeout=24 * 3600)  # visible demo: memory cap, no parent check
+from freecad_s1.runtime.gui_server import start
+start(ui=os.environ.get("FREECAD_S1_UI") == "1")
