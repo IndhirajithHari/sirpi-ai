@@ -12,4 +12,4 @@ $env:SIRPI_REPO = $repo
 $env:SIRPI_PORT = "$Port"
 # This window is the interactive CAD application the user will watch/control.
 Start-Process -FilePath $FreeCAD -ArgumentList ('"' + (Join-Path $PSScriptRoot 'Sirpi.FCMacro') + '"')
-Write-Host "Sirpi FreeCAD launched on port $Port. Next: .\.venv\Scripts\python.exe -m sirpi demo --port $Port"
+Write-Host "Sirpi FreeCAD launched on port $Port. Use the Sirpi Chat panel to describe and build a part."

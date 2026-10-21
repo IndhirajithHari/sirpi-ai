@@ -1,8 +1,10 @@
 # Set up Sirpi with FreeCAD on Windows
 
 Sirpi runs its AI model in a separate Python process and controls FreeCAD through
-a macro. It does not appear as a workbench or an Addon Manager extension. Keep
-the FreeCAD window open while running Sirpi commands from PowerShell.
+a macro. The macro opens the **Sirpi Chat** panel for supported text requests.
+It is not a workbench or an Addon Manager extension. After launching FreeCAD,
+follow the [chat guide](CHAT.md) to build parts from the panel, or use the
+PowerShell workflow below. Keep the FreeCAD window open while building.
 
 These instructions apply to a fresh installation for any user. Start at Step 1
 for first-time setup, or Step 4 to check an existing installation.
@@ -200,8 +202,9 @@ With the same FreeCAD server still running:
 .\.venv\Scripts\python.exe -m sirpi demo --goals showcase\goals.json --name flange --out runs\flange
 ```
 
-The goal file supplies ordered modeling features and dimensions. Sirpi does not
-yet accept arbitrary natural-language descriptions or images as modeling goals.
+The goal file supplies ordered modeling features and dimensions. Sirpi Chat
+accepts a limited set of text formats for plates, cylinders, rings and holes;
+arbitrary natural-language descriptions and images remain unsupported.
 For all supported demo options, run:
 
 ```powershell

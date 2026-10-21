@@ -1,0 +1,151 @@
+# Optional live GUI integration test. Launch in a dedicated FreeCAD session.
+# Requires SIRPI_REPO; results are written to runs/chat-gui-test.json.
+import json
+import math
+import os
+from pathlib import Path
+import sys
+import traceback
+
+repo = Path(os.environ["SIRPI_REPO"])
+sys.path.insert(0, str(repo))
+import FreeCAD as App
+import FreeCADGui as Gui
+from PySide import QtCore, QtGui
+from freecad_s1.runtime.gui_server import start
+from sirpi.chat import EXAMPLES
+from sirpi.chat_panel import show
+from sirpi.chat_panel import QtWidgets
+
+server = start(port=int(os.environ.get("SIRPI_PORT", "8766")))
+panel = show(server, repo)
+if os.environ.get("SIRPI_TEST_MINIMIZED") == "1":
+    Gui.getMainWindow().showMinimized()
+report_file = repo / "runs" / "chat-gui-test.json"
+report_file.parent.mkdir(parents=True, exist_ok=True)
+report = {"status": "running", "checks": [], "builds": []}
+prompts = list(EXAMPLES) + ["make a square at 2*2mm", "now add a hole in centre at 1mm"]
+volumes = [100 * 60 * 8, (100 * 60 - 4 * math.pi * 3**2) * 8,
+           math.pi * 20**2 * 20, math.pi * (20**2 - 5**2) * 20,
+           math.pi * (30**2 - 15**2) * 10, 2 * 2 * 0.5, (4 - math.pi * 0.5**2) * 0.5]
+boxes = [(100, 60, 8), (100, 60, 8), (40, 40, 20), (40, 40, 20), (60, 60, 10), (2, 2, 0.5), (2, 2, 0.5)]
+if os.environ.get("SIRPI_TEST_FOLLOWUP_ONLY") == "1":
+    prompts, volumes, boxes = prompts[-2:], volumes[-2:], boxes[-2:]
+state = {"index": -1, "phase": "start", "ticks": 0, "docs": []}
+
+
+def save_report():
+    report_file.write_text(json.dumps(report, indent=2), encoding="utf-8")
+
+
+def submit(text, enter=False):
+    panel.input.setPlainText(text)
+    if enter:
+        event = QtGui.QKeyEvent(QtCore.QEvent.KeyPress, QtCore.Qt.Key_Return, QtCore.Qt.NoModifier)
+        QtWidgets.QApplication.sendEvent(panel.input, event)
+    else:
+        panel.review.click()
+
+
+def tick():
+    try:
+        state["ticks"] += 1
+        assert state["ticks"] < 1800, "GUI validation timed out"
+        if state["phase"] == "start":
+            assert panel.isVisible(), "Chat dock not visible"
+            assert show(server, repo) is panel, "Duplicate dock on rerun"
+            submit("Create a plate")
+            assert panel.plan is None and not panel.build.isEnabled()
+            submit("100 x 60 x 8 mm")
+            assert panel.plan is not None and panel.build.isEnabled()
+            panel.input.setPlainText("make a gear")
+            assert panel.plan is None and not panel.build.isEnabled()
+            panel.review.click()
+            assert panel.plan is None
+            report["checks"].extend(["dock visible and singleton", "missing dimensions follow-up", "typing invalidates plan", "unsupported request blocked"])
+            submit(EXAMPLES[0])
+            panel.build.click()
+            assert panel.process is not None
+            panel.stop.click()
+            state["phase"] = "cancel"
+        elif state["phase"] == "cancel":
+            if panel.process is not None or server.conn is not None:
+                return
+            assert "stopped" in panel.status.text().lower()
+            assert panel.input.isEnabled()
+            assert panel.conversation.last_built is None, "Cancelled build must not become follow-up context"
+            report["checks"].append("cancel and recovery")
+            state["phase"] = "next"
+        elif state["phase"] == "next":
+            if server.conn is not None:
+                return
+            state["index"] += 1
+            index = state["index"]
+            if index == len(prompts):
+                assert all(name in App.listDocuments() for name in state["docs"])
+                assert App.getDocument(state["docs"][0]).Label == "Preserved manual edit"
+                report["checks"].append("previous documents and manual edits preserved")
+                report["status"] = "passed"
+                save_report()
+                timer.stop()
+                panel.say("Validation", f"All {len(prompts)} builds and UI checks passed, including the center-hole follow-up.")
+                return
+            submit(prompts[index], enter=True)
+            if prompts[index] == "make a square at 2*2mm":
+                assert panel.plan is None and not panel.build.isEnabled()
+                assert "what thickness" in panel.history.toPlainText()
+                submit("0.5 mm", enter=True)
+                assert panel.plan.goal.features[0].params == {"w": 2, "d": 2, "h": 0.5}
+                report["checks"].append("exact square prompt, thickness follow-up and Enter submission")
+            if prompts[index] == "now add a hole in centre at 1mm":
+                assert panel.plan is None and not panel.build.isEnabled()
+                assert "diameter or radius" in panel.history.toPlainText()
+                submit("diameter", enter=True)
+                assert panel.plan.goal.features[1].params == {"r": 0.5, "x": 0, "y": 0}
+                assert len(panel.conversation.last_built.features) == 1
+                report["checks"].append("center-hole follow-up clarifies size and uses last successful build")
+            assert panel.plan is not None
+            panel.build.click()
+            assert panel.process is not None
+            assert not panel.review.isEnabled() and panel.stop.isEnabled()
+            state["phase"] = "building"
+        elif state["phase"] == "building":
+            if panel.process is not None:
+                return
+            index = state["index"]
+            result = json.loads((panel.output_dir / "result.json").read_text())
+            assert result["success"], f"Failed {prompts[index]}: {result}"
+            doc = server.worker.session.doc
+            shape = doc.getObject("Body").Tip.Shape
+            assert shape.isValid() and len(shape.Solids) == 1
+            assert math.isclose(shape.Volume, volumes[index], rel_tol=1e-6), (shape.Volume, volumes[index])
+            # Use exact geometry, not the display tessellation's padded box.
+            bounds = shape.optimalBoundingBox(False, False)
+            actual_box = (bounds.XLength, bounds.YLength, bounds.ZLength)
+            assert all(math.isclose(a, b, abs_tol=1e-5) for a, b in zip(actual_box, boxes[index])), actual_box
+            assert (panel.output_dir / "Sirpi.FCStd").exists()
+            assert (panel.output_dir / "Sirpi.png").exists()
+            report["builds"].append({"prompt": prompts[index], "result": result, "volume": shape.Volume,
+                                     "bbox": actual_box, "valid_solids": 1, "output": str(panel.output_dir)})
+            state["docs"].append(doc.Name)
+            assert panel.conversation.last_built is not None
+            if prompts[index] == "now add a hole in centre at 1mm":
+                assert len(panel.conversation.last_built.features) == 2
+                old_shape = App.getDocument(state["docs"][-2]).getObject("Body").Tip.Shape
+                assert math.isclose(old_shape.Volume, 2.0, abs_tol=1e-6)
+            if index == 0:
+                doc.Label = "Preserved manual edit"
+            state["phase"] = "next"
+            save_report()
+    except Exception:
+        report["status"] = "failed"
+        report["error"] = traceback.format_exc()
+        save_report()
+        timer.stop()
+        App.Console.PrintError(report["error"])
+
+
+timer = QtCore.QTimer()
+timer.timeout.connect(tick)
+timer.start(300)
+save_report()

@@ -9,4 +9,7 @@ if repo not in sys.path:
     sys.path.insert(0, repo)
 
 from freecad_s1.runtime.gui_server import start
-start(port=int(os.environ.get("SIRPI_PORT", "8765")))
+server = start(port=int(os.environ.get("SIRPI_PORT", "8765")))
+
+from sirpi.chat_panel import show
+show(server, repo)

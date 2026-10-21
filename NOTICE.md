@@ -10,7 +10,8 @@ Sirpi is derived from Taiga-S1 by Shiv Shanmugam.
 
 The source and released Taiga weights were imported from the pinned revision.
 Sirpi adds a distribution name, CLI, CPU inference check, GUI rollout client,
-Windows launcher, macro, boundary tests and documentation. The shared GUI
+Windows launcher, macro, a local template-based chat planner and FreeCAD dock,
+boundary and GUI tests, and documentation. The shared GUI
 server banner now says Sirpi. Model parameters, training metadata, action
 vocabulary, protocol and core module names preserve upstream compatibility.
 Six POSIX-only watchdog tests are explicitly skipped on Windows; their runtime

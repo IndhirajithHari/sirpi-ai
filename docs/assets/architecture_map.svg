@@ -1,0 +1,297 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="100%" height="100%" style="background:#0d1117; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
+  <defs>
+    <style>
+      .title { fill: #f0f6fc; font-size: 16px; font-weight: 700; letter-spacing: 0.5px; }
+      .subtitle { fill: #8b949e; font-size: 11px; }
+      .badge-bg { fill: #161b22; stroke: #30363d; stroke-width: 1; }
+      .badge-txt { font-size: 10px; font-weight: 600; }
+      .box { rx: 8; ry: 8; stroke-width: 1.5; }
+      .box-user { fill: #161b22; stroke: #58a6ff; }
+      .box-cpu { fill: #161b22; stroke: #bc8cff; }
+      .box-fc { fill: #161b22; stroke: #3fb950; }
+      .box-ipc { fill: #161b22; stroke: #d29922; }
+      .box-title { font-size: 12px; font-weight: 700; }
+      .box-body { font-size: 10.5px; fill: #8b949e; }
+      .box-tag { font-size: 9.5px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+      .flow-line { fill: none; stroke-width: 2; stroke-linecap: round; }
+      .flow-cyan { stroke: #58a6ff; stroke-dasharray: 6 6; animation: dash-forward 1.8s linear infinite; }
+      .flow-purple { stroke: #bc8cff; stroke-dasharray: 6 6; animation: dash-forward 1.8s linear infinite; }
+      .flow-gold { stroke: #d29922; stroke-dasharray: 6 6; animation: dash-forward 1.5s linear infinite; }
+      .flow-gold-rev { stroke: #d29922; stroke-dasharray: 6 6; animation: dash-reverse 1.5s linear infinite; }
+      .flow-green { stroke: #3fb950; stroke-dasharray: 6 6; animation: dash-forward 1.8s linear infinite; }
+      
+      @keyframes dash-forward {
+        from { stroke-dashoffset: 24; }
+        to { stroke-dashoffset: 0; }
+      }
+      @keyframes dash-reverse {
+        from { stroke-dashoffset: 0; }
+        to { stroke-dashoffset: 24; }
+      }
+      @keyframes pulse-glow {
+        0%, 100% { filter: drop-shadow(0 0 2px rgba(188, 140, 255, 0.4)); }
+        50% { filter: drop-shadow(0 0 8px rgba(188, 140, 255, 0.85)); }
+      }
+      @keyframes pulse-fc {
+        0%, 100% { filter: drop-shadow(0 0 2px rgba(63, 185, 80, 0.4)); }
+        50% { filter: drop-shadow(0 0 8px rgba(63, 185, 80, 0.85)); }
+      }
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+      }
+      .beacon-green { animation: blink 1.4s ease-in-out infinite; }
+      .beacon-cyan { animation: blink 1.8s ease-in-out infinite; }
+      .pulse-cpu-box { animation: pulse-glow 3s ease-in-out infinite; }
+      .pulse-fc-box { animation: pulse-fc 3s ease-in-out infinite; }
+    </style>
+    
+    <marker id="arrow-cyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#58a6ff"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#bc8cff"/>
+    </marker>
+    <marker id="arrow-gold" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#d29922"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#3fb950"/>
+    </marker>
+
+    <!-- Moving data packets glow -->
+    <filter id="glow-blue">
+      <feGaussianBlur stdDeviation="2.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Outer Border Panel -->
+  <rect x="12" y="12" width="936" height="516" rx="12" fill="#0d1117" stroke="#30363d" stroke-width="1.5"/>
+
+  <!-- Header Bar -->
+  <g transform="translate(30, 36)">
+    <circle cx="8" cy="8" r="6" fill="#58a6ff" class="beacon-cyan"/>
+    <text x="24" y="13" class="title">SIRPI AI ── SYSTEM ARCHITECTURE &amp; DATA FLOW MAP</text>
+    <text x="24" y="28" class="subtitle">Autonomous Local CPU Transformer Policy &amp; FreeCAD Dual-Process Rollout</text>
+
+    <!-- Status Badges -->
+    <g transform="translate(540, 0)">
+      <rect x="0" y="0" width="105" height="22" rx="11" class="badge-bg"/>
+      <circle cx="12" cy="11" r="3.5" fill="#3fb950" class="beacon-green"/>
+      <text x="22" y="15" class="badge-txt" fill="#3fb950">CPU INFERENCE</text>
+
+      <rect x="115" y="0" width="110" height="22" rx="11" class="badge-bg"/>
+      <circle cx="127" cy="11" r="3.5" fill="#d29922"/>
+      <text x="137" y="15" class="badge-txt" fill="#d29922">IPC: PORT 8765</text>
+
+      <rect x="235" y="0" width="125" height="22" rx="11" class="badge-bg"/>
+      <circle cx="247" cy="11" r="3.5" fill="#bc8cff"/>
+      <text x="257" y="15" class="badge-txt" fill="#bc8cff">MODEL: 1.23M</text>
+    </g>
+  </g>
+
+  <!-- Horizontal divider -->
+  <line x1="30" y1="76" x2="930" y2="76" stroke="#21262d" stroke-width="1"/>
+
+  <!-- SECTION 1: Natural Language & User Dialog (Left Column: x=36..256, w=220) -->
+  <g transform="translate(36, 95)">
+    <!-- Section Label -->
+    <rect x="0" y="0" width="220" height="24" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+    <text x="10" y="16" fill="#58a6ff" font-size="10.5" font-weight="700">1. NATURAL LANGUAGE INPUT</text>
+
+    <!-- Box 1A: Prompt Interface -->
+    <g transform="translate(0, 36)">
+      <rect width="220" height="82" class="box box-user"/>
+      <text x="14" y="22" fill="#58a6ff" class="box-title">FreeCAD Chat Input Panel</text>
+      <text x="14" y="40" class="box-body">&quot;Plate 100x60x8mm with</text>
+      <text x="14" y="55" class="box-body">4 holes diam 6mm inset 10mm&quot;</text>
+      <text x="14" y="73" class="box-tag" fill="#79c0ff">Enter Key / Review Request</text>
+    </g>
+
+    <!-- Flow Arrow 1A -> 1B -->
+    <path d="M 110 118 L 110 148" class="flow-line flow-cyan" marker-end="url(#arrow-cyan)"/>
+
+    <!-- Box 1B: Parser & Dialogue Manager -->
+    <g transform="translate(0, 150)">
+      <rect width="220" height="105" class="box box-user"/>
+      <text x="14" y="22" fill="#58a6ff" class="box-title">Engineering Grammar Parser</text>
+      <text x="14" y="40" class="box-body">• Dimension bounds: 0.1 - 1000mm</text>
+      <text x="14" y="55" class="box-body">• Edge clearance &amp; fit checks</text>
+      <text x="14" y="70" class="box-body">• Clarification (thickness / radius)</text>
+      <rect x="12" y="80" width="196" height="18" rx="3" fill="#0d1117"/>
+      <text x="18" y="93" class="box-tag" fill="#58a6ff">sirpi/chat.py</text>
+    </g>
+
+    <!-- Flow Arrow 1B -> 1C -->
+    <path d="M 110 255 L 110 285" class="flow-line flow-cyan" marker-end="url(#arrow-cyan)"/>
+
+    <!-- Box 1C: Structured Goal Spec -->
+    <g transform="translate(0, 288)">
+      <rect width="220" height="105" class="box box-user"/>
+      <text x="14" y="22" fill="#58a6ff" class="box-title">Structured Goal Specification</text>
+      <text x="14" y="40" class="box-body">• Ordered GoalFeature sequence</text>
+      <text x="14" y="55" class="box-body">• F0: base_box (100, 60, 8 mm)</text>
+      <text x="14" y="70" class="box-body">• F1..F4: hole (r=3, inset=10 mm)</text>
+      <rect x="12" y="80" width="196" height="18" rx="3" fill="#0d1117"/>
+      <text x="18" y="93" class="box-tag" fill="#79c0ff">Goal.from_json()</text>
+    </g>
+  </g>
+
+  <!-- Flow Connector: Goal -> AI Subsystem -->
+  <path d="M 256 438 L 290 438 L 290 200 L 320 200" class="flow-line flow-purple" marker-end="url(#arrow-purple)"/>
+
+  <!-- SECTION 2: AI Neural Subsystem (Center Column: x=324..604, w=280) -->
+  <g transform="translate(324, 95)">
+    <!-- Subsystem Container with Pulse Glow -->
+    <rect x="0" y="0" width="280" height="405" rx="10" fill="#12151c" stroke="#bc8cff" stroke-width="1.5" class="pulse-cpu-box" stroke-opacity="0.6"/>
+    
+    <!-- Section Label -->
+    <rect x="12" y="10" width="256" height="22" rx="4" fill="#1c182a" stroke="#bc8cff" stroke-width="1"/>
+    <text x="20" y="25" fill="#bc8cff" font-size="10.5" font-weight="700">2. LOCAL PYTORCH AGENT (CPU)</text>
+
+    <!-- Box 2A: Featurizer & State Encoder -->
+    <g transform="translate(15, 40)">
+      <rect width="250" height="85" class="box box-cpu"/>
+      <text x="14" y="22" fill="#bc8cff" class="box-title">Document State Featurizer</text>
+      <text x="14" y="40" class="box-body">• Encoders: Tree, sketches, constraints</text>
+      <text x="14" y="55" class="box-body">• Candidate actions enumeration</text>
+      <text x="14" y="72" class="box-tag" fill="#d2a8ff">freecad_s1.model.featurize</text>
+    </g>
+
+    <!-- Arrow 2A -> 2B -->
+    <path d="M 140 125 L 140 148" class="flow-line flow-purple" marker-end="url(#arrow-purple)"/>
+
+    <!-- Box 2B: Neural Policy Network -->
+    <g transform="translate(15, 150)">
+      <rect width="250" height="118" class="box box-cpu"/>
+      <text x="14" y="22" fill="#bc8cff" class="box-title">Transformer Policy (1.23M Weights)</text>
+      <text x="14" y="40" class="box-body">• 3 Encoder Layers, 2 Decoder Layers</text>
+      <text x="14" y="55" class="box-body">• 4 Attention Heads, Dimension 128</text>
+      <text x="14" y="70" class="box-body">• Modular Done Head evaluates features</text>
+      <rect x="12" y="84" width="226" height="22" rx="3" fill="#0d1117"/>
+      <text x="18" y="99" class="box-tag" fill="#bc8cff">Policy.score(state, goal, actions)</text>
+    </g>
+
+    <!-- Arrow 2B -> 2C -->
+    <path d="M 140 268 L 140 292" class="flow-line flow-purple" marker-end="url(#arrow-purple)"/>
+
+    <!-- Box 2C: Rollout Policy & Resolver -->
+    <g transform="translate(15, 295)">
+      <rect width="250" height="92" class="box box-cpu"/>
+      <text x="14" y="22" fill="#bc8cff" class="box-title">Command &amp; Parameter Resolver</text>
+      <text x="14" y="40" class="box-body">• Selects top-ranked CAD command</text>
+      <text x="14" y="55" class="box-body">• Resolves parametric arguments</text>
+      <text x="14" y="75" class="box-tag" fill="#d2a8ff">freecad_s1.runtime.params</text>
+    </g>
+  </g>
+
+  <!-- SECTION 3: IPC Bridge (Port 8765) between CPU Agent and FreeCAD -->
+  <!-- Top Arrow: Agent -> FreeCAD (Command) -->
+  <g transform="translate(604, 210)">
+    <path d="M 0 0 L 72 0" class="flow-line flow-gold" marker-end="url(#arrow-gold)"/>
+    <rect x="6" y="-18" width="62" height="14" rx="3" fill="#161b22" stroke="#d29922" stroke-width="0.8"/>
+    <text x="10" y="-8" class="box-tag" fill="#e3b341">step(action)</text>
+  </g>
+
+  <!-- Bottom Arrow: FreeCAD -> Agent (State Snapshot) -->
+  <g transform="translate(604, 275)">
+    <path d="M 72 0 L 6 0" class="flow-line flow-gold-rev" marker-end="url(#arrow-gold)"/>
+    <rect x="6" y="-18" width="62" height="14" rx="3" fill="#161b22" stroke="#d29922" stroke-width="0.8"/>
+    <text x="10" y="-8" class="box-tag" fill="#e3b341">doc_state</text>
+  </g>
+
+  <!-- Central IPC Badge -->
+  <g transform="translate(614, 230)">
+    <rect width="52" height="24" rx="4" fill="#161b22" stroke="#d29922" stroke-width="1"/>
+    <text x="8" y="11" font-size="8.5" font-weight="700" fill="#d29922">TCP SOCKET</text>
+    <text x="11" y="20" font-size="8" font-family="monospace" fill="#e3b341">:8765</text>
+  </g>
+
+  <!-- SECTION 4: FreeCAD Process (Right Column: x=684..924, w=240) -->
+  <g transform="translate(684, 95)">
+    <!-- Subsystem Container with Green Glow -->
+    <rect x="0" y="0" width="240" height="405" rx="10" fill="#101a14" stroke="#3fb950" stroke-width="1.5" class="pulse-fc-box" stroke-opacity="0.6"/>
+
+    <!-- Section Label -->
+    <rect x="12" y="10" width="216" height="22" rx="4" fill="#142419" stroke="#3fb950" stroke-width="1"/>
+    <text x="20" y="25" fill="#3fb950" font-size="10.5" font-weight="700">3. FREECAD GUI (MAIN THREAD)</text>
+
+    <!-- Box 3A: Socket Server & Chat Dock -->
+    <g transform="translate(12, 40)">
+      <rect width="216" height="85" class="box box-fc"/>
+      <text x="12" y="22" fill="#3fb950" class="box-title">Sirpi GUI Server &amp; Chat Dock</text>
+      <text x="12" y="40" class="box-body">• scripts/Sirpi.FCMacro</text>
+      <text x="12" y="55" class="box-body">• Dedicated Qt Thread Poll Loop</text>
+      <text x="12" y="72" class="box-tag" fill="#7ee787">Non-destructive doc isolation</text>
+    </g>
+
+    <!-- Arrow 3A -> 3B -->
+    <path d="M 120 125 L 120 148" class="flow-line flow-green" marker-end="url(#arrow-green)"/>
+
+    <!-- Box 3B: Native CAD Engine -->
+    <g transform="translate(12, 150)">
+      <rect width="216" height="118" class="box box-fc"/>
+      <text x="12" y="22" fill="#3fb950" class="box-title">PartDesign &amp; Sketcher</text>
+      <text x="12" y="40" class="box-body">• Creates Body, Planes, Sketches</text>
+      <text x="12" y="55" class="box-body">• Applies Geometric Constraints</text>
+      <text x="12" y="70" class="box-body">• Pads, Pockets, Fillets, Shells</text>
+      <rect x="10" y="84" width="196" height="22" rx="3" fill="#0d1117"/>
+      <text x="16" y="99" class="box-tag" fill="#3fb950">Active FreeCAD Document</text>
+    </g>
+
+    <!-- Arrow 3B -> 3C -->
+    <path d="M 120 268 L 120 292" class="flow-line flow-green" marker-end="url(#arrow-green)"/>
+
+    <!-- Box 3C: Solid Validation & Exports -->
+    <g transform="translate(12, 295)">
+      <rect width="216" height="92" class="box box-fc"/>
+      <text x="12" y="22" fill="#3fb950" class="box-title">IoU Validation &amp; Artifacts</text>
+      <text x="12" y="40" class="box-body">• Solid IoU Overlap Check (1.0)</text>
+      <text x="12" y="55" class="box-body">• Sirpi.FCStd (Parametric CAD)</text>
+      <text x="12" y="75" class="box-tag" fill="#7ee787">Sirpi.png &amp; result.json</text>
+    </g>
+  </g>
+
+  <!-- Animated Traveling Packets -->
+  <!-- Packet 1: User prompt to parser -->
+  <circle r="4" fill="#79c0ff" filter="url(#glow-blue)">
+    <animateMotion path="M 146 213 L 146 243" dur="1.8s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- Packet 2: Parser to Goal -->
+  <circle r="4" fill="#79c0ff" filter="url(#glow-blue)">
+    <animateMotion path="M 146 350 L 146 383" dur="1.8s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- Packet 3: Center CPU featurizer to Transformer -->
+  <circle r="4" fill="#d2a8ff">
+    <animateMotion path="M 464 220 L 464 243" dur="1.5s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- Packet 4: Transformer to Resolver -->
+  <circle r="4" fill="#d2a8ff">
+    <animateMotion path="M 464 363 L 464 387" dur="1.5s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- Packet 5: IPC Command packet across bridge (Left to Right) -->
+  <circle r="4.5" fill="#f2cc60">
+    <animateMotion path="M 604 210 L 676 210" dur="1.5s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- Packet 6: IPC State feedback packet across bridge (Right to Left) -->
+  <circle r="4.5" fill="#f2cc60">
+    <animateMotion path="M 676 275 L 604 275" dur="1.5s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- Packet 7: FreeCAD execution flow -->
+  <circle r="4" fill="#7ee787">
+    <animateMotion path="M 804 220 L 804 243" dur="1.8s" repeatCount="indefinite" />
+  </circle>
+  <circle r="4" fill="#7ee787">
+    <animateMotion path="M 804 363 L 804 387" dur="1.8s" repeatCount="indefinite" />
+  </circle>
+</svg>
